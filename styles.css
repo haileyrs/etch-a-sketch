@@ -1,6 +1,9 @@
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #E4DCCF;
+  min-width: 960px;
+  min-height: 960px;
+  overflow: scroll;
 }
 
 h1 {
@@ -70,15 +73,24 @@ input[type='range']::-webkit-slider-thumb {
   align-items: center;
   background-color: #EA5455;
   border-radius: 15px;
-  height: 80vh;
-  width: 80vw;
-  margin: 10vh 10vw 5vh;
+  height: 720px;
+  width: 1028px;
+  margin: 7vh 7vw 5vh;
   padding: 16px;
 }
 
 .grid {
-  background-color: #E4DCCF;
-  height: 65vh;
-  width: 65vw;
+  background-color: #002B5B;
+  display: flex;
+  flex-wrap: wrap;
+  height: 720px;
+  width: 720px;
   margin: 1rem;
+}
+
+.grid-square {
+  border: 1px solid #002B5B;
+  background-color: #E4DCCF; 
+  width: 36px; 
+  height: 36px;
 }
