@@ -17,17 +17,22 @@
       <div class="title">
         <h1>Etch-a-Sketch</h1>
       </div>
-      <div class="grid" id="grid"></div>
-      <div class="operations">
-        <button class="active">Single color</button>
-        <button>Rainbow mode</button>
-        <button>Eraser</button>
-        <button>Clear all</button>
-        <div class="size-slider-container">
-          <div class="size-val" id="sizeVal">16x16</div>
-          <input id="sizer" type="range" value="16" min="1" max="64" />
+      <div class="content">
+        <div class="operations-left">
+          <button class="active single-mode">Single color</button>
+          <button class="rainbow-mode">Rainbow mode</button>
+          <button class="eraser-mode">Eraser</button>
+        </div>
+        <div class="grid" id="grid"></div>
+        <div class="operations-right">
+          <button class="clear-mode">Clear all</button>
+          <div class="size-slider-container">
+            <div class="size-val" id="sizeVal">16x16</div>
+            <input id="sizer" type="range" value="16" min="1" max="64" />
+          </div>
         </div>
       </div>
+      
     </div>
     <div class="footer">
       <p>
