@@ -1,7 +1,3 @@
-// create grid
-// adjust box sizing accordingly
-
-const gridSpace = 600
 let currentMode = 'singleBtn'
 let currentSize = 16
 
@@ -22,6 +18,7 @@ rainbowBtn.addEventListener('click', () => changeMode('rainbowBtn'));
 eraserBtn.addEventListener('click', () => changeMode('eraserBtn'));
 clearBtn.addEventListener('click', () => clearAll());
 slider.addEventListener('input', () => changeSize());
+
 
 function changeMode(newMode) {
   switch (currentMode) {
@@ -47,16 +44,21 @@ function changeMode(newMode) {
       eraserBtn.classList.add('active')
       break
   };
-
   currentMode = newMode;
 }
 
-function clearAll() {
-  clearBtn.classList.add('active');
+function clearAll(clicked = true) {
   changeMode('singleBtn');
-  setTimeout(() => {
-    clearBtn.classList.remove('active');
-  }, 500); 
+  let squares = document.getElementsByClassName('grid-square')
+  for (i of squares) {
+    i.style.backgroundColor = '#E4DCCF'
+  }
+  if (clicked) {
+    clearBtn.classList.add('active');
+    setTimeout(() => {
+      clearBtn.classList.remove('active');
+    }, 500);
+  }
 }
 
 function changeSize() {
@@ -65,8 +67,23 @@ function changeSize() {
   createGrid(sizer.value);
 }
 
+function fillSquare(e) {
+  switch (currentMode) {
+    case 'singleBtn':
+      e.target.style.backgroundColor = '#002B5B'
+      break
+    case 'rainbowBtn':
+      let colors = ['#30E3DF', '#FCE22A', '#F37121', '#D61355', '#590696', '#A3F7BF']
+      e.target.style.backgroundColor = colors[Math.floor(Math.random()*6)]
+      break
+    case 'eraserBtn':
+      e.target.style.backgroundColor = '#E4DCCF'
+      break
+  }
+}
+
 function createGrid(dimensions = 16) {
-  clearAll();
+  clearAll(false);
   grid.innerHTML = '';
   if (dimensions < 100) {
     // update grid size and grid square size based on dimesions 
@@ -74,8 +91,9 @@ function createGrid(dimensions = 16) {
     grid.setAttribute('style', gridDim)
 
     for (let i = 0; i < (dimensions*dimensions); i++) {
-      const gridSquare = document.createElement('div');
+      let gridSquare = document.createElement('div');
       gridSquare.classList.add('grid-square');
+      gridSquare.addEventListener('mouseover', (e) => fillSquare(e));
       grid.appendChild(gridSquare);
     }
   }
